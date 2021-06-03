@@ -3,6 +3,7 @@
 import os
 import sys
 import requests
+import time
 import bs4
 from bs4 import BeautifulSoup
 
@@ -59,6 +60,7 @@ def main():
                 print(e)
                 print("CHECK", name, "FAILED")
             checkIfAvailable(body)
+        time.sleep(60)
 
 if __name__ == '__main__':
     try:
