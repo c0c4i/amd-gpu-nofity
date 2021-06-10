@@ -27,12 +27,12 @@ def get_html(url):
     
     return r
 
-def checkIfAvailable(body):
+def checkIfAvailable(body, name, url):
     soup = BeautifulSoup(body, "lxml")
     oos = soup.find('p', class_='product-out-of-stock')
     if ADD_TO_CART in body:
         notify('GPU Available', name)
-        os.system("open {url}")
+        os.system(f"open -a '/Applications/Google Chrome.app' '{url}'")
         return True
     return False
 
@@ -59,7 +59,7 @@ def main():
             except requests.exceptions.HTTPError as e:
                 print(e)
                 print("CHECK", name, "FAILED")
-            checkIfAvailable(body)
+            checkIfAvailable(body, name, url)
         time.sleep(60)
 
 if __name__ == '__main__':
